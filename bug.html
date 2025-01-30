@@ -1,0 +1,18 @@
+This bug occurs when using Tailwind CSS's `@apply` directive with classes that contain pseudo-elements (like `::before` or `::after`).  If the `@apply` directive is used in a class that's then applied to an element with a pseudo-element, the styles from the `@apply` directive might not be inherited correctly by the pseudo-element.
+
+```html
+<div class="container">
+  <button class="my-button">
+    Click Me
+  </button>
+</div>
+```
+
+```css
+/* Tailwind classes */
+.container { @apply bg-gray-100 p-4;}
+.my-button { @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;}
+.my-button::before { @apply content-['[ '] text-gray-400;}
+```
+
+In this example, the `::before` pseudo-element's styles might not correctly apply if you expect it to inherit styles from `my-button` because of the `@apply` usage.
