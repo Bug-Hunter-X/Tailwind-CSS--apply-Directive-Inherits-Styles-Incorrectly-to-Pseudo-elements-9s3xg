@@ -1,0 +1,18 @@
+The best solution is to avoid using `@apply` for pseudo-elements.  Instead, apply styles directly to pseudo-elements:
+
+```html
+<div class="container">
+  <button class="my-button">
+    Click Me
+  </button>
+</div>
+```
+
+```css
+/* Tailwind classes */
+.container { @apply bg-gray-100 p-4;}
+.my-button { @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;}
+.my-button::before { content: '[ '; color: #6B7280; }
+```
+
+This avoids the inheritance problem entirely, making the styles more predictable and maintainable.  Directly styling pseudo-elements enhances control and clarity over your CSS.
